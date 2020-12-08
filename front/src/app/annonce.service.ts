@@ -39,7 +39,7 @@ export class AnnonceService {
 
     updateAnnonce(annonce: Annonce): void {
         const url = `${this.baseUrl}/modify/${annonce.id}`;
-        this.http.post(url, {name: annonce.name, description: annonce.description}).pipe(catchError(this.handleError<any>('updateAnnonce')));
+        this.http.put(url, {name: annonce.name, description: annonce.description}).pipe(catchError(this.handleError<any>('updateAnnonce')));
     }
 
     deleteAnnonce(id: number): void {
