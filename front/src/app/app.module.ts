@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListeAnnoncesComponent } from './liste-annonces/liste-annonces.component';
 
 @NgModule({
   declarations: [
@@ -10,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    ListeAnnoncesComponent,
     HttpClientModule
   ],
   providers: [],

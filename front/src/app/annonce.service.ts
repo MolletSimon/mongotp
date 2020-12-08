@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
@@ -38,13 +38,15 @@ export class AnnonceService {
     }
 
     updateAnnonce(annonce: Annonce): void {
-
+        const url = `${this.baseUrl}/modify/${annonce.id}`;
+        this.http.post(url, {name: annonce.name, description: annonce.description}).pipe(catchError(this.handleError<any>('updateAnnonce')));
     }
 
     deleteAnnonce(id: number): void {
-
+        const url = `${this.baseUrl}/delete/${id}`;
+        this.http.delete(url).pipe(catchError(this.handleError<any>('deleteAnnonce')));
     }
-    
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.
@@ -55,7 +57,7 @@ export class AnnonceService {
         return (error: any): Observable<T> => {
 
             // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
+            console.error(`${operation} : ${error}`); // log to console instead
 
             // Let the app keep running by returning an empty result.
             return of(result as T);
