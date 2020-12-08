@@ -3,5 +3,5 @@ export interface Annonce {
     name: string;
     description: string;
     host_since: Date;
-    location: string;
+    host_location: string;
   }
