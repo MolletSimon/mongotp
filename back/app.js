@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const app = express();
 
 //import routes
-
+const mainRoutes = require('./routes/main');
 
 //connection mongodatabase
 mongoose.connect(
-    'mongodb+srv://clement:motdepasse@cluster0.twfrq.mongodb.net/mongotp?retryWrites=true&w=majority',
+    'mongodb+srv://clement:motdepasse@cluster0.twfrq.mongodb.net/tpmongo?retryWrites=true&w=majority',
     {useNewUrlParser: true,
     useUnifiedTopology: true})
     .then(() => console.log('Connexion à MongoDB réussie !'))
@@ -26,6 +26,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 //routes
-
+app.use('/api', mainRoutes);
 
 module.exports = app;
