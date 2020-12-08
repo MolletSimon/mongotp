@@ -1,0 +1,12 @@
+<h2>Mes annonces</h2>
+
+<ul>
+    <li *ngFor="let annonce of annonces">
+      <a>
+        <h3 matLine> {{annonce.name}} </h3>
+      </a>
+      <p matLine>
+        <span> {{annonce.description}} </span>
+      </p>
+    </li>
+</ul>
