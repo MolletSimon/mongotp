@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AnnonceService } from './../annonce.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Annonce } from '../annonce';
-import { Annonces } from '../mock-annonces';
 
 @Component({
   selector: 'app-liste-annonces',
@@ -9,14 +9,58 @@ import { Annonces } from '../mock-annonces';
 })
 export class ListeAnnoncesComponent implements OnInit {
   annonces: Annonce[];
+  page = 1;
+  sort = "asc";
+  singleAnnonce = false;
+  annonceId = "";
+  date= "";
+  finished = true;
 
-  constructor() { }
+  constructor(private annonceService: AnnonceService) { }
 
   ngOnInit(): void {
     this.getAnnonces();
   }
 
   getAnnonces(): void {
-    this.annonces = Annonces;
+    this.annonceService.getAnnoncesPage(this.page, this.sort).subscribe(result => {
+      this.annonces = result["result"];
+    })
+  }
+
+  changePage(page: number): void {
+    this.page += page;
+    if(this.page <= 0)
+      this.page = 1;
+    this.getAnnonces();
+  }
+
+  changeStatus(sort: string): void {
+    this.sort = sort;
+    this.page = 1;
+    this.getAnnonces();
+  }
+
+  changeDate(date: string): void {
+    if (date) {
+      this.annonceService.getAnnoncesByDate(date).subscribe(result => {
+        this.annonces = result["result"];
+      })
+    } else {
+      this.getAnnonces();
+    }
+  }
+
+  viewAnnonce(annonce: Annonce) {
+    this.annonceId = annonce._id;
+    this.finished = false;
+    document.getElementsByTagName("table")[0].style.display = "none"
+    this.singleAnnonce = !this.singleAnnonce;
+  }
+
+  statusChangedHandler(status: boolean) {
+    this.finished = status;
+    this.singleAnnonce = !this.singleAnnonce;
+    this.getAnnonces();
   }
 }

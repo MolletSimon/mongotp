@@ -11,7 +11,7 @@ exports.getByPaginate = (req, res, next) => {
         if (req.params.page == 1) {
             if (req.params.sort == "asc") {
                 main.find()
-                .select('name description host_since price')
+                .select('name host_location host_since price')
                 .limit(10)
                 .sort({name: 'asc'})
                 .then(result => res.status(200).json({result}))
@@ -19,7 +19,7 @@ exports.getByPaginate = (req, res, next) => {
             } else if (req.params.sort == "desc") {
                 console.log("desc")
                 main.find()
-                .select('name description host_since price')
+                .select('name host_location host_since price')
                 .limit(10)
                 .sort({name: -1})
                 .then(result => res.status(200).json({result}))
@@ -30,7 +30,7 @@ exports.getByPaginate = (req, res, next) => {
             if (req.params.sort == "asc") {
                 let page = req.params.page - 1;
                 main.find()
-                .select('name description host_since price')
+                .select('name host_location host_since price')
                 .limit(10)
                 .skip(page * 10)
                 .sort({name: 'asc'})
@@ -39,7 +39,7 @@ exports.getByPaginate = (req, res, next) => {
             } else if (req.params.sort == "desc") {
                 let page = req.params.page - 1;
                 main.find()
-                .select('name description host_since price')
+                .select('name host_location host_since price')
                 .limit(10)
                 .skip(page * 10)
                 .sort({name: -1})

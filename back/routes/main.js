@@ -10,6 +10,6 @@ router.get('/:id', mainCtrl.getOne);
 
 router.put('/modify/:id', mainCtrl.modify);
 
-router.post('/delete/:id', mainCtrl.delete);
+router.delete('/delete/:id', mainCtrl.delete);
 
 module.exports = router;

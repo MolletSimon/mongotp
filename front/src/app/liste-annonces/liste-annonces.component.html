@@ -1,12 +1,48 @@
-<h2>Mes annonces</h2>
+<div class="p-4 m-4">
+  
+<table class="table" *ngIf="finished" >
+  <thead>
+    <div class="input-group mb-3">
+      <div class="col-auto">
+        <input type="date" class="form-control" id="inputPassword2" placeholder="Date" [(ngModel)]="date">
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-success mb-3" (click)="changeDate(date)">Valider</button>
+      </div>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked (click)="changeStatus('asc')">
+      <label class="btn btn-outline-primary" for="btnradio1">Ascendant</label>
+    
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="changeStatus('desc')">
+      <label class="btn btn-outline-primary" for="btnradio2">Descendant</label>
+    </div>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Emplacement</th>
+      <th scope="col">Date</th>
+      <th scope="col">Prix</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let annonce of annonces" (click)="viewAnnonce(annonce)" style="cursor: pointer;">
+      <th scope="row">{{annonce.name}}</th>
+      <td>{{annonce.host_location}}</td>
+      <td>{{annonce.host_since}}</td>
+      <td>{{annonce.price}}</td>
+    </tr>
+  </tbody>
+  <div class="btn-group m-2" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-outline-danger" (click)="changePage(-10)">Page -10</button>
+    <button type="button" class="btn btn-outline-warning" (click)="changePage(-1)">Page précédente</button>
+    <button type="button" class="btn btn-outline-info" (click)="changePage(1)">Page suivante</button>
+    <button type="button" class="btn btn-outline-primary" (click)="changePage(10)">Page +10</button>
+    <span class="">page : {{page}} </span>
+  </div>
+</table>
 
-<ul>
-    <li *ngFor="let annonce of annonces">
-      <a>
-        <h3 matLine> {{annonce.name}} </h3>
-      </a>
-      <p matLine>
-        <span> {{annonce.description}} </span>
-      </p>
-    </li>
-</ul>
+<div *ngIf="singleAnnonce" >
+  <app-annonce annonceId="{{this.annonceId}}" (statusChanged)="statusChangedHandler($event)"></app-annonce>
+</div>
+
+</div>

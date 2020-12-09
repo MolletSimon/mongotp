@@ -5,11 +5,13 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Annonce } from './annonce';
-import { Annonces } from './mock-annonces';
 import { formatDate } from '@angular/common';
 
+@Injectable({
+    providedIn: 'root'
+  })
 export class AnnonceService {
-    private baseUrl = 'localhost:3000/api';
+    private baseUrl = 'http://localhost:3000/api';
     private modifyUrl = 'modify/:id';
     private deleteUrl = 'delete/:id';
 
@@ -19,7 +21,7 @@ export class AnnonceService {
 
     constructor(private http: HttpClient) { }
 
-    getAnnonce(id: number): Observable<Annonce> {
+    getAnnonce(id: string): Observable<Annonce> {
         const url = `${this.baseUrl}/${id}`;
         return this.http.get<Annonce>(url).pipe(catchError(this.handleError<any>('getAnnonce', {})));
     }
@@ -32,19 +34,19 @@ export class AnnonceService {
         return this.http.get<Annonce[]>(url).pipe(catchError(this.handleError<any>('getAnnoncesPage', [])));
     }
 
-    getAnnoncesByDate(date: Date): Observable<Annonce[]> {
-        const url = `${this.baseUrl}/bydate/${formatDate(date, 'yyyy-MM-dd', 'fr-FR')}`;
+    getAnnoncesByDate(date: string): Observable<Annonce[]> {
+        const url = `${this.baseUrl}/bydate/${date}`;
         return this.http.get<Annonce[]>(url).pipe(catchError(this.handleError<any>('getAnnoncesByDate', [])));
     }
 
-    updateAnnonce(annonce: Annonce): void {
-        const url = `${this.baseUrl}/modify/${annonce.id}`;
-        this.http.put(url, {name: annonce.name, description: annonce.description}).pipe(catchError(this.handleError<any>('updateAnnonce')));
+    updateAnnonce(annonce: Annonce): Observable<any> {
+        const url = `${this.baseUrl}/modify/${annonce._id}`;
+        return this.http.put<any>(url, {"name": annonce.name, "beds": annonce.beds, "bathrooms_text": annonce.bathrooms_text, "price": annonce.price, "host_name": annonce.host_name}).pipe(catchError(this.handleError<any>('updateAnnonce')));
     }
 
-    deleteAnnonce(id: number): void {
+    deleteAnnonce(id: string): Observable<any> {
         const url = `${this.baseUrl}/delete/${id}`;
-        this.http.delete(url).pipe(catchError(this.handleError<any>('deleteAnnonce')));
+        return this.http.delete<any>(url).pipe(catchError(this.handleError<any>('deleteAnnonce')));
     }
 
     /**
