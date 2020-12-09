@@ -8,7 +8,8 @@
         </div>
         <div class="col-md-8">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><input class="form-control" placeholder="{{annonce.name}}"></li>
+                <li class="list-group-item"><input class="form-control" placeholder="{{annonce.name}}" [(ngModel)]="annonce.name"></li>
+                <li class="list-group-item"><textarea class="form-control" placeholder="{{annonce.description}}" [(ngModel)]="annonce.description" rows="5"></textarea></li>
                 <li class="list-group-item">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Chambres</span>
