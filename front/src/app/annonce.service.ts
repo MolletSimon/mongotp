@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -12,8 +12,8 @@ import { formatDate } from '@angular/common';
   })
 export class AnnonceService {
     private baseUrl = 'http://localhost:3000/api';
-    private modifyUrl = 'modify/:id';
-    private deleteUrl = 'delete/:id';
+    private gifUrl = 'https://api.giphy.com/v1/gifs/search';
+    private key = '4AvYzKjcBatPgia8Fq0xNnAWpiOzrX3y';
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -48,6 +48,16 @@ export class AnnonceService {
         const url = `${this.baseUrl}/insert`;
         return this.http.post<any>(url, {"name": img.name, "size": img.size, "analyse": img.analyse, "date": img.date}).pipe(catchError(this.handleError<any>('save')));
     }
+
+    getGIF(search: string): Observable<any> {
+        let params = new HttpParams();
+        params = params.append("api_key", this.key);
+        params = params.append("q", search);
+        params = params.append("limit", "1");
+
+        return this.http.get<any>(this.gifUrl, {params}).pipe(catchError(this.handleError<any>('save')));        
+    }
+
     /**
      * Handle Http operation that failed.
      * Let the app continue.

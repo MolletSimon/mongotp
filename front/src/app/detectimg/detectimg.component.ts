@@ -42,6 +42,7 @@ export class DetectimgComponent implements OnInit {
     // Classify the image.
     const predictions = await model.detect(img);
     this.file = this.fileService.getFiles();
+    this.service.getGIF(predictions[0].class).subscribe(result => console.log(result.data[0].embed_url));
     this.detectionFinished = true;
     this.spinner.hide();
     this.predictions = predictions;
