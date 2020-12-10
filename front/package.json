@@ -25,6 +25,7 @@
     "@tensorflow/tfjs": "^2.7.0",
     "@tensorflow/tfjs-backend-cpu": "^2.7.0",
     "ngx-dropzone": "^2.3.0",
+    "ngx-spinner": "^9.0.2",
     "rxjs": "~6.5.4",
     "save": "^2.4.0",
     "tslib": "^1.10.0",

@@ -11,6 +11,7 @@ import { AnnonceComponent } from './annonce/annonce.component';
 import { DropzoneComponent } from './dropzone/dropzone.component';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { DetectimgComponent } from './detectimg/detectimg.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DetectimgComponent } from './detectimg/detectimg.component';
     HttpClientModule,
     NoopAnimationsModule,
     FormsModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NgxSpinnerModule
   ],
   providers: [AnnonceService],
   bootstrap: [AppComponent,]

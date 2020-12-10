@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as coco from '@tensorflow-models/coco-ssd';
 import * as tf from '@tensorflow/tfjs';
 import * as backend from '@tensorflow/tfjs-backend-cpu';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-detectimg',
@@ -10,9 +11,12 @@ import * as backend from '@tensorflow/tfjs-backend-cpu';
 })
 export class DetectimgComponent implements OnInit {
   imageSrc = "localhost:4200/images/racoon.jpg"
-  constructor() { }
+  detectionFinished = false;
+  predictions = [];
+  constructor(private spinner: NgxSpinnerService) { }
 
   async ngOnInit(): Promise<void> {
+    this.spinner.show();
     await this.detect()
   }
 
@@ -25,9 +29,9 @@ export class DetectimgComponent implements OnInit {
 
     // Classify the image.
     const predictions = await model.detect(img);
-
-    console.log('Predictions: ');
-    console.log(predictions);
+    this.detectionFinished = true;
+    this.predictions = predictions;
+    console.log(this.predictions);
   }
 
   
