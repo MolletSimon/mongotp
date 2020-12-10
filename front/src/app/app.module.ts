@@ -8,18 +8,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListeAnnoncesComponent } from './liste-annonces/liste-annonces.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AnnonceComponent } from './annonce/annonce.component';
+import { DropzoneComponent } from './dropzone/dropzone.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListeAnnoncesComponent,
     AnnonceComponent,
+    DropzoneComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     NoopAnimationsModule,
-    FormsModule
+    FormsModule,
+    NgxDropzoneModule
   ],
   providers: [AnnonceService],
   bootstrap: [AppComponent,]
