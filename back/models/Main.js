@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const mainSchema = mongoose.Schema({
     name : String ,
-    date :  Date ,
+    date :  String ,
     size :  Number ,
     analyse :  String
 });
