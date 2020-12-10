@@ -29,12 +29,6 @@ export class AnnonceComponent implements OnInit {
     });
   }
 
-  updateAnnonce(): void {
-    this.annonceService.updateAnnonce(this.annonce).subscribe(result => {
-      this.statusChanged.emit(true);
-    })
-  }
-
   back(): void {
     this.statusChanged.emit(true);
   }
