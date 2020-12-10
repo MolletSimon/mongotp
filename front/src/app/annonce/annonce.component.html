@@ -3,40 +3,14 @@
 </button>
 <div class="card" *ngIf="annonce" style="width: 100%; margin: 10px">
     <div class="row no-gutters">
-        <div class="col-md-4">
-            <img src="{{annonce.picture_url}}" class="card-img-top" alt="...">
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><input class="form-control" placeholder="{{annonce.name}}" [(ngModel)]="annonce.name"></li>
-                <li class="list-group-item"><textarea class="form-control" placeholder="{{annonce.description}}" [(ngModel)]="annonce.description" rows="5"></textarea></li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Chambres</span>
-                        <input type="text" class="form-control" placeholder="{{annonce.beds}}" [(ngModel)]="annonce.beds">
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Salle de bains : </span>
-                        <input type="text" class="form-control" placeholder="{{annonce.bathrooms_text}}" [(ngModel)]="annonce.bathrooms_text">
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Annonceur : </span>
-                        <input type="text" class="form-control" placeholder="{{annonce.host_name}}" [(ngModel)]="annonce.host_name">
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Prix : </span>
-                        <input type="text" class="form-control" placeholder="{{annonce.price}}" [(ngModel)]="annonce.price">
-                    </div>
-                </li>
+                <li class="list-group-item">{{annonce.name}}</li>
+                <li class="list-group-item">{{annonce.date}}</li>
+                <li class="list-group-item">{{annonce.size}}</li>
+                <li class="list-group-item">{{annonce.analyse}}</li>
                 <li class="list-group-item">
                     <div class="btn-group m-2" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-warning" (click)="updateAnnonce()">Modifier</button>
                         <button type="button" class="btn btn-danger" (click)="deleteAnnonce()">Supprimer</button>
                       </div>
                 </li>

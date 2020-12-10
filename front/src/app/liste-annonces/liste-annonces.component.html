@@ -19,17 +19,17 @@
     </div>
     <tr>
       <th scope="col">Nom</th>
-      <th scope="col">Emplacement</th>
       <th scope="col">Date</th>
-      <th scope="col">Prix</th>
+      <th scope="col">Taille</th>
+      <th scope="col">Analyse</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let annonce of annonces" (click)="viewAnnonce(annonce)" style="cursor: pointer;">
       <th scope="row">{{annonce.name}}</th>
-      <td>{{annonce.host_location}}</td>
-      <td>{{annonce.host_since}}</td>
-      <td>{{annonce.price}}</td>
+      <td>{{annonce.date}}</td>
+      <td>{{annonce.size}}Ko</td>
+      <td>{{annonce.analyse}}</td>
     </tr>
   </tbody>
   <div class="btn-group m-2" role="group" aria-label="Basic example">

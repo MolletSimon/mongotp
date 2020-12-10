@@ -76,6 +76,6 @@ exports.insert = (req, res, next) => {
         ...req.body
     });
     component.save()
-        .then(() => res.status(201).json({component})
-        .catch(error => res.status(400).json(error)));
+        .then(() => res.status(201).json({component}))
+        .catch(error => res.status(400).json(error));
 }
