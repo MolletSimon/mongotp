@@ -1,7 +1,7 @@
 export interface Annonce {
     _id: string;
     name: string;
-    size: string;
+    size: number;
     date: string;
     analyse: string;
   }

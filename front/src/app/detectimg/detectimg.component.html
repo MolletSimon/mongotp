@@ -1,4 +1,19 @@
-<h2 class="jumbotron" *ngIf="predictions.length == 1" >I think it's a {{predictions[0].class}}, I'm sure about that at {{predictions[0].score * 100 | number}}%</h2>
-<div *ngIf="!detectionFinished" >
-    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" type = "square-spin" [fullScreen] = "false"><p style="color: white" > Je réfléchis.. </p></ngx-spinner>
-</div>
+<button type="button" class="btn btn-primary" (click)="detect()">Analyser !</button>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" type = "square-spin" [fullScreen] = "false"><p style="color: white" > Je réfléchis.. </p></ngx-spinner>
+<div class="card" *ngIf="predictions.length == 1">
+    <div class="card-header">
+      Prédiction
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>Objet : {{predictions[0].class}}</p>
+        <footer class="blockquote-footer">Probabilité <cite title="Source Title">{{predictions[0].score * 100 | number}}%</cite></footer>
+      </blockquote>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group">
+            <button type="button" class="btn btn-danger">Supprimer</button>
+            <button type="button" class="btn btn-success" (click)="save()">Sauvegarder</button>
+        </div>
+    </div>
+  </div>

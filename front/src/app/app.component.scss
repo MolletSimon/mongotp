@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    align-items: center;
+    
+}
+app-dropzone {
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    width: 40%;
+}
+
+app-detectimg {
+    display: contents;
+}

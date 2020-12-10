@@ -44,6 +44,10 @@ export class AnnonceService {
         return this.http.delete<any>(url).pipe(catchError(this.handleError<any>('deleteAnnonce')));
     }
 
+    saveImg(img: Annonce): Observable<any> {
+        const url = `${this.baseUrl}/insert`;
+        return this.http.post<any>(url, {"name": img.name, "size": img.size, "analyse": img.analyse, "date": img.date}).pipe(catchError(this.handleError<any>('save')));
+    }
     /**
      * Handle Http operation that failed.
      * Let the app continue.
