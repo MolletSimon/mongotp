@@ -1,2 +1,6 @@
-<img src="../../assets/img/kiki.jpg" alt="racoon" id="img" crossorigin='anonymous'>
-<p>je réfléchis...</p>
+<img src="../../assets/img/kiki.jpg" alt="racoon" id="img" crossorigin='anonymous' style="max-height: 40rem;">
+<h2 class="jumbotron" *ngIf="predictions.length == 1" >I think it's a {{predictions[0].class}}, I'm sure about that at {{predictions[0].score * 100 | number}}%</h2>
+<div *ngIf="!detectionFinished" >
+    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "small" color = "#fff" type = "square-spin" [fullScreen] = "false"><p style="color: white" > Je réfléchis.. </p></ngx-spinner>
+</div>
+
