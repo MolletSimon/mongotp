@@ -20,6 +20,7 @@ export class DetectimgComponent implements OnInit {
   imageSrc = "localhost:4200/images/racoon.jpg"
   predictions = []; 
   file: File;
+  gifUrl: string;
   constructor(
     private spinner: NgxSpinnerService, 
     private service: AnnonceService, 
@@ -42,7 +43,7 @@ export class DetectimgComponent implements OnInit {
     // Classify the image.
     const predictions = await model.detect(img);
     this.file = this.fileService.getFiles();
-    this.service.getGIF(predictions[0].class).subscribe(result => console.log(result.data[0].embed_url));
+    this.service.getGIF(predictions[0].class).subscribe(result => this.gifUrl = result.data[0].images.original.url);
     this.detectionFinished = true;
     this.spinner.hide();
     this.predictions = predictions;

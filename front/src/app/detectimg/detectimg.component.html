@@ -9,6 +9,7 @@
         <p>Objet : {{predictions[0].class}}</p>
         <footer class="blockquote-footer">Probabilité <cite title="Source Title">{{predictions[0].score * 100 | number}}%</cite></footer>
       </blockquote>
+      <img [src]="gifUrl" />
     </div>
     <div class="card-footer">
         <div class="btn-group">
