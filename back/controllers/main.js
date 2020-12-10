@@ -1,7 +1,7 @@
 const main = require('../models/Main');
 
 exports.getByDate = (req,res,next) => {
-    main.find({host_since: req.params.date})
+    main.find({date: req.params.date})
         .then((result) => res.status(200).json({result}))
         .catch(err => res.status(400).json(err))
 }
@@ -11,7 +11,7 @@ exports.getByPaginate = (req, res, next) => {
         if (req.params.page == 1) {
             if (req.params.sort == "asc") {
                 main.find()
-                .select('name host_location host_since price')
+                .select('name date size analyse')
                 .limit(10)
                 .sort({name: 'asc'})
                 .then(result => res.status(200).json({result}))
@@ -19,7 +19,7 @@ exports.getByPaginate = (req, res, next) => {
             } else if (req.params.sort == "desc") {
                 console.log("desc")
                 main.find()
-                .select('name host_location host_since price')
+                .select('name date size analyse')
                 .limit(10)
                 .sort({name: -1})
                 .then(result => res.status(200).json({result}))
@@ -30,7 +30,7 @@ exports.getByPaginate = (req, res, next) => {
             if (req.params.sort == "asc") {
                 let page = req.params.page - 1;
                 main.find()
-                .select('name host_location host_since price')
+                .select('name date size analyse')
                 .limit(10)
                 .skip(page * 10)
                 .sort({name: 'asc'})
@@ -39,7 +39,7 @@ exports.getByPaginate = (req, res, next) => {
             } else if (req.params.sort == "desc") {
                 let page = req.params.page - 1;
                 main.find()
-                .select('name host_location host_since price')
+                .select('name date size analyse')
                 .limit(10)
                 .skip(page * 10)
                 .sort({name: -1})
@@ -69,4 +69,13 @@ exports.delete = (req, res, next) => {
     main.deleteOne({_id: req.params.id})
         .then(() => res.status(200).json({ message: 'Composant supprimé' }))
         .catch(error => res.status(400).json(error));
+}
+
+exports.insert = (req, res, next) => {
+    const component = new main({
+        ...req.body
+    });
+    component.save()
+        .then(() => res.status(201).json({component})
+        .catch(error => res.status(400).json(error)));
 }

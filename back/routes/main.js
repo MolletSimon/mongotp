@@ -12,4 +12,6 @@ router.put('/modify/:id', mainCtrl.modify);
 
 router.delete('/delete/:id', mainCtrl.delete);
 
+router.insert('/insert', mainCtrl.insert);
+
 module.exports = router;
