@@ -53,7 +53,7 @@ export class AnnonceService {
         let params = new HttpParams();
         params = params.append("api_key", this.key);
         params = params.append("q", search);
-        params = params.append("limit", "1");
+        params = params.append("limit", "50");
 
         return this.http.get<any>(this.gifUrl, {params}).pipe(catchError(this.handleError<any>('save')));        
     }
