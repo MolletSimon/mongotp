@@ -39,11 +39,6 @@ export class AnnonceService {
         return this.http.get<Annonce[]>(url).pipe(catchError(this.handleError<any>('getAnnoncesByDate', [])));
     }
 
-    updateAnnonce(annonce: Annonce): Observable<any> {
-        const url = `${this.baseUrl}/modify/${annonce._id}`;
-        return this.http.put<any>(url, {"name": annonce.name, "description": annonce.description, "beds": annonce.beds, "bathrooms_text": annonce.bathrooms_text, "price": annonce.price, "host_name": annonce.host_name}).pipe(catchError(this.handleError<any>('updateAnnonce')));
-    }
-
     deleteAnnonce(id: string): Observable<any> {
         const url = `${this.baseUrl}/delete/${id}`;
         return this.http.delete<any>(url).pipe(catchError(this.handleError<any>('deleteAnnonce')));
