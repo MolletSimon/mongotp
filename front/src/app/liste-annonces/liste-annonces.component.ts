@@ -63,4 +63,8 @@ export class ListeAnnoncesComponent implements OnInit {
     this.singleAnnonce = !this.singleAnnonce;
     this.getAnnonces();
   }
+  
+  delete(annonce: Annonce) {
+    this.annonceService.deleteAnnonce(annonce._id).subscribe(result => this.getAnnonces())
+  } 
 }
