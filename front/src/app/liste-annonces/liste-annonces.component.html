@@ -22,14 +22,16 @@
       <th scope="col">Date</th>
       <th scope="col">Taille</th>
       <th scope="col">Analyse</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let annonce of annonces" (click)="viewAnnonce(annonce)" style="cursor: pointer;">
+    <tr *ngFor="let annonce of annonces">
       <th scope="row">{{annonce.name}}</th>
       <td>{{annonce.date}}</td>
       <td>{{annonce.size}}Ko</td>
       <td>{{annonce.analyse}}</td>
+      <td><button type="button" class="btn btn-danger" (click)="delete(annonce)">Supprimer</button></td>
     </tr>
   </tbody>
   <div class="btn-group m-2" role="group" aria-label="Basic example">
